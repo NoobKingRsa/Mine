@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini POS System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Hamburger menu button -->
+    <button id="menuToggle" aria-label="Open menu">&#9776;</button>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <span>Mini POS</span>
+            <button id="closeSidebar" aria-label="Close menu">&times;</button>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showPage('sales');closeSidebar();">Sales</a></li>
+                <li><a href="#" onclick="showPage('stock');closeSidebar();">Stock</a></li>
+                <li><a href="#" onclick="showPage('sync');closeSidebar();">Sync</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Main content -->
+    <main>
+        <section id="sales" class="page">
+            <h2>New Sale</h2>
+            <form id="salesForm" autocomplete="off">
+                <div class="form-row">
+                    <label>Item
+                        <select id="itemSelect" required></select>
+                    </label>
+                    <label>Quantity
+                        <input type="number" id="quantity" min="1" required>
+                    </label>
+                </div>
+                <div class="form-row">
+                    <label>Price per item
+                        <input type="text" id="price" readonly>
+                    </label>
+                    <label>Total
+                        <input type="text" id="total" readonly>
+                    </label>
+                </div>
+                <div class="form-row">
+                    <label>Amount Given
+                        <input type="number" id="amountGiven" min="0" required>
+                    </label>
+                    <label>Change Due
+                        <input type="text" id="change" readonly>
+                    </label>
+                </div>
+                <fieldset>
+                    <legend>Customer Info</legend>
+                    <div class="form-row">
+                        <input type="text" id="name" placeholder="Name" required>
+                        <input type="text" id="surname" placeholder="Surname" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="email" id="email" placeholder="Email Address" required>
+                        <input type="tel" id="phone" placeholder="Phone Number" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="text" id="businessName" placeholder="Business Name" required>
+                    </div>
+                </fieldset>
+                <button type="submit">Save Sale</button>
+            </form>
+            <div id="salesStatus"></div>
+        </section>
+        <section id="stock" class="page" style="display:none;">
+            <h2>Stock Overview</h2>
+            <table id="stockTable">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Stock</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+        <section id="sync" class="page" style="display:none;">
+            <h2>Sync Sales</h2>
+            <button id="syncBtn">Sync Now</button>
+            <ul id="unsyncedSales"></ul>
+            <div id="syncStatus"></div>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
